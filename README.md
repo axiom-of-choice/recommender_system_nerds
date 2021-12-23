@@ -19,7 +19,7 @@ implementation and all the engineering work, also helping with the construction 
 * Edmundo Martínez 
 * Enki Barra
 * Fernando López Ponce
-* Emiliano T?
+* Emiliano Tort Ortiz
 
 
 With external collaboration from:
