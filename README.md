@@ -14,8 +14,7 @@ The team is composed by:
 implementation and all the engineering work, also helping with the construction and training of the ML model.  
   * Contact:
     1. [LinkedIn](https://www.linkedin.com/in/isaac-hernandez-garcia-9905/)
-    2. Mail: [isadohergar@gmail.com](isadohergar@gmail.com)
-    3. [GitHub](https://github.com/axiom-of-choice)
+    2. Mail: isadohergar@gmail.com
 
 * Ángel Edmundo Herńadez Martínez
 * Enki Alonso Barra Melendrez
