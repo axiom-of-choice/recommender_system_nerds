@@ -16,7 +16,8 @@ implementation and all the engineering work, also helping with the construction 
     1. [LinkedIn](https://www.linkedin.com/in/isaac-hernandez-garcia-9905/)
     2. Mail: [isadohergar@gmail.com](isadohergar@gmail.com)
     3. [GitHub](https://github.com/axiom-of-choice)
-* Edmundo Martínez 
+    
+* Ángel Edmundo Herńadez Martínez 
 * Enki Alonso Barra Melendrez
 * Fernando López Ponce
 * Emiliano Tort Ortiz
