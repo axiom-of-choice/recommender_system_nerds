@@ -19,7 +19,8 @@ implementation and all the engineering work, also helping with the construction 
 
 * Ángel Edmundo Herńadez Martínez
 * Enki Alonso Barra Melendrez
-  * Mail: enki.barmel97@ciencias.unam.mx
+  * Mail1: enki.barmel97@ciencias.unam.mx
+  * Mail2: kranki.barmel97@gmail.com 
 * Fernando López Ponce
 * Emiliano Tort Ortiz
 
