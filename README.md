@@ -11,7 +11,7 @@ All the product desing and the code that have been used in this project were dev
 
 The team is composed by:
 * Isaac Hernández (Project Manager, Data Science and Engineering consultant) working in the API's, web page code, Database
-implementation and all the engineering work, also helping with the construction and training of the ML model.  
+implementation deploying the model and all the engineering work, also helping with the construction and training of the ML model.  
   * Contact:
     1. [LinkedIn](https://www.linkedin.com/in/isaac-hernandez-garcia-9905/)
     2. Mail: isadohergar@gmail.com
