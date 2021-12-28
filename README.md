@@ -25,6 +25,7 @@ implementation deploying the model and all the engineering work, also helping wi
 
 
 With external collaboration from:
-* Enrique Macedo for the Front End [LinkedIn](https://www.linkedin.com/in/enrique-rodr%C3%ADguez-macedo-67111654/)
+* Enrique Macedo for the Front End 
+  * [LinkedIn](https://www.linkedin.com/in/enrique-rodr%C3%ADguez-macedo-67111654/)
 
 This project is with personal and academic purposes only
