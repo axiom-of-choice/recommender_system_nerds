@@ -16,9 +16,14 @@ implementation and all the engineering work, also helping with the construction 
     1. [LinkedIn](https://www.linkedin.com/in/isaac-hernandez-garcia-9905/)
     2. Mail: isadohergar@gmail.com
 
-* Ángel Edmundo Herńadez Martínez
+* Ángel Edmundo Hernández Martínez (Mathematician) construction and training of the ML model.  
+  * Contact:
+    1. Mail: aedmundohm@gmail.com
+
 * Enki Alonso Barra Melendrez
-  * Mail: enki.barmel97@ciencias.unam.mx
+  * Contact:
+    1. Mail: enki.barmel97@ciencias.unam.mx
+    
 * Fernando López Ponce
 * Emiliano Tort Ortiz
 
