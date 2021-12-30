@@ -21,14 +21,10 @@ implementation deploying the model and all the engineering work, also helping wi
     1. Mail: aedmundohm@gmail.com
 
 * Enki Alonso Barra Melendrez
-<<<<<<< HEAD
+
   * Mail1: enki.barmel97@ciencias.unam.mx
   * Mail2: kranki.barmel97@gmail.com 
-=======
-  * Contact:
-    1. Mail: enki.barmel97@ciencias.unam.mx
-    
->>>>>>> 6bcd6d2505294ee3d19b052c28fcdb73e2d177dd
+
 * Fernando López Ponce
 * Emiliano Tort Ortiz
 
