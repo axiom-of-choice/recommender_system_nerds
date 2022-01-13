@@ -98,7 +98,4 @@ webencodings==0.5.1
 Werkzeug==2.0.2
 widgetsnbextension==3.5.1
 wrapt==1.12.1
-<<<<<<< HEAD
-=======
 pymysql==1.0.2
->>>>>>> 9628da428e7d5c33af7c7b91b3e0883ebee68d8b
