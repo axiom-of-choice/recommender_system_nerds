@@ -48,7 +48,7 @@
       </form>
 
                     </div>
-                  </div>
+              </div>
                 </form>
               </div>
             </div>
@@ -60,6 +60,8 @@
     <!-- Project Login Form-->
 
     <!-- Script -->
+
+    <!-- No se si se ocupan
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -75,5 +77,36 @@
       integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
       crossorigin="anonymous"
     ></script>
+    -->
+
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#livebox").on("input",function(e){
+            $("#datalist").empty();
+            $.ajax({
+                method:"post",
+                url:"/livesearch",
+                data:{text:$("#livebox").val()},
+                success:function(res){
+                    var data = "<div class='list-group'>";
+                    $.each(res,function(index,value){
+                        data += "<p class='list-group-item list-group-item-action'>"+value.country+"</p>";
+                    });
+                    data += "</div>";
+                    $("#datalist").html(data);
+                }
+            });
+        });
+    });
+</script>
+
+</head>
+<body>
+    <div class="search-box">
+        <input type="text" autocomplete="off" placeholder="Search book..." />
+        <div class="result"></div>
+    </div>
+</body>
   </body>
 </html>
