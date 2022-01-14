@@ -80,26 +80,31 @@
     -->
 
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script>
-    $(document).ready(function(){
-        $("#livebox").on("input",function(e){
-            $("#datalist").empty();
+        <script>
+        $(document).ready(function(){
+        load_data();
+        function load_data(query='')
+        {
             $.ajax({
-                method:"post",
-                url:"/livesearch",
-                data:{text:$("#livebox").val()},
-                success:function(res){
-                    var data = "<div class='list-group'>";
-                    $.each(res,function(index,value){
-                        data += "<p class='list-group-item list-group-item-action'>"+value.country+"</p>";
-                    });
-                    data += "</div>";
-                    $("#datalist").html(data);
+                url:"/fetchrecords",
+                method:"POST",
+                data:{query:query},
+                success:function(data)
+                {
+                    $('tbody').html(data);
+                    $('tbody').append(data.htmlresponse);
                 }
-            });
+            })
+        }
+
+        $('#search_filter').change(function(){
+            $('#hidden_value').val($('#search_filter').val());
+            var query = $('#hidden_value').val();
+            load_data(query);
         });
-    });
-</script>
+
+        });
+        </script>
 
 </head>
 <body>

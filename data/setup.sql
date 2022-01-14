@@ -1,23 +1,28 @@
-CREATE DATABASE IF NOT EXISTS books;
-CREATE TABLE books.books_eng (
-  isbn13 INT PRIMARY KEY,
-  isbn10 INT,
+CREATE DATABASE books;
+
+
+CREATE TABLE books_eng (
+  isbn13 BIGINT PRIMARY KEY,
+  isbn10 TEXT,
   title TEXT ,
   subtitle TEXT,
   authors TEXT,
   categories TEXT ,
   thumbnail TEXT,
-  description TEXT ,
-  published_year INT,
-  average_rating FLOAT
+  description TEXT,
+  published_year FLOAT,
+  average_rating FLOAT,
+  num_pages FLOAT,
+  ratings_count FLOAT
+
 );
 
-CREATE TABLE books.books_spa(
-  isbn13 INT PRIMARY KEY,
+CREATE TABLE books_spa(
+  isbn13 BIGINT PRIMARY KEY,
   title TEXT
 );
 
-LOAD DATA INFILE '/docker-entrypoint-initdb.d/init_data/books.csv'
-INTO TABLE books.books_eng
-FIELDS TERMINATED BY ','
-LINES TERMINATED BY '\n' (isbn13,isbn10,title,subtitle,authors,categories,thumbnail,description,published_year,average_rating);
+COPY books_eng(isbn13,isbn10,title,subtitle,authors,categories,thumbnail,description,published_year,average_rating,num_pages,ratings_count)
+FROM '/home/isaac/PycharmProjects/recommender_system_nerds/data/books.csv'
+DELIMITER  ','
+CSV HEADER;

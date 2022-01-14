@@ -4,34 +4,44 @@ from urllib.request import urlopen
 
 from flask import Flask, request, jsonify, render_template
 import numpy as np
-import
+import psycopg2
+import psycopg2.extras
 
 from tensorflow.keras.preprocessing.image import img_to_array
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.models import load_model
-import pymysql
 
-model = load_model("./model/model.h5")
+#model = load_model("./model/model.h5")
 
 app = Flask(__name__)
 
 #Enter here your database informations
-app.config["MYSQL_HOST"] = "localhost"
-app.config["MYSQL_USER"] = "root"
-app.config["MYSQL_PASSWORD"] = ""
-app.config["MYSQL_DB"] = "testingdb"
-app.config["MYSQL_CURSORCLASS"] = "DictCursor"
+DB_HOST = "localhost"
+DB_NAME = "books"
+DB_USER = "postgres"
+DB_PASS = "admin"
+
+conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST)
 
 
-@app.route("/livesearch",methods=["POST","GET"])
-def livesearch():
-    searchbox = request.form.get("text")
-    connection = pymysql.connect()
-    cursor = mysql.connection.cursor()
-    query = "select * from books where title LIKE '{}%' order by title".format(searchbox)
-    cursor.execute(query)
-    result = cursor.fetchall()
-    return jsonify(result)
+@app.route("/fetchrecords",methods=["POST","GET"])
+def fetchrecords():
+    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    if request.method == 'POST':
+        query = request.form['query']
+        #print(query)
+        if query == '':
+            cur.execute("SELECT * FROM employee ORDER BY id DESC")
+            employeelist = cur.fetchall()
+            print('all list')
+        else:
+            search_text = request.form['query']
+            print(search_text)
+            cur.execute("SELECT * FROM employee WHERE office IN (%s) ORDER BY id DESC", [search_text])
+            employeelist = cur.fetchall()
+    return jsonify({'htmlresponse': render_template('response.html', employeelist=employeelist)})
+
+
 
 @app.route("/")
 def index():
