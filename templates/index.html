@@ -24,7 +24,7 @@
   </head>
   <body>
     <!-- Browser -->
-
+    <!-- Browser
     <header>
       <div class="view video-container">
         <video src="../static/video/background.mp4" autoplay muted loop></video>
@@ -43,9 +43,25 @@
                     </div>
 
       <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search"><br>
+        <input class="live-search" type="search" placeholder="Buscar..." aria-label="Search"><br>
         <button class="btn btn-success center-text" type="submit">I'm Feeling Lucky</button>
-      </form>
+      </form>-->
+
+      <div class="container search-table">
+<p><h2 align="center">Integracion PostgreSQL </h2></p>
+            <div class="search-box">
+                <div class="row">
+                    <div class="col-md-3">
+                        <h5>Search Book</h5>
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text" name="search_text" id="search_text" class="form-control" placeholder="Search by title">
+                    </div>
+                </div>
+            </div>
+   <div id="result"></div>
+      </div>
+
 
                     </div>
               </div>
@@ -80,38 +96,31 @@
     -->
 
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script>
-        $(document).ready(function(){
-        load_data();
-        function load_data(query='')
-        {
-            $.ajax({
-                url:"/fetchrecords",
-                method:"POST",
-                data:{query:query},
-                success:function(data)
-                {
-                    $('tbody').html(data);
-                    $('tbody').append(data.htmlresponse);
-                }
-            })
-        }
 
-        $('#search_filter').change(function(){
-            $('#hidden_value').val($('#search_filter').val());
-            var query = $('#hidden_value').val();
-            load_data(query);
-        });
+<script>
+$(document).ready(function(){
+  load_data();
+  function load_data(query)
+  {
+   $.ajax({
+    url:"/fetchrecords",
+    method:"POST",
+    data:{query:query},
+    success:function(data)
+    {
+      $('#result').html(data);
+      $("#result").append(data.htmlresponse);
+    }
+   });
+  }
+  $('#search_text').keyup(function(){
+    var search = $(this).val();
+    if(search != ''){
+    load_data(search);
+   }else{
+    load_data();
+   }
+  });
+});
+</script>
 
-        });
-        </script>
-
-</head>
-<body>
-    <div class="search-box">
-        <input type="text" autocomplete="off" placeholder="Search book..." />
-        <div class="result"></div>
-    </div>
-</body>
-  </body>
-</html>

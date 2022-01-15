@@ -16,31 +16,12 @@ from tensorflow.keras.models import load_model
 app = Flask(__name__)
 
 #Enter here your database informations
-DB_HOST = "localhost"
-DB_NAME = "books"
-DB_USER = "postgres"
-DB_PASS = "admin"
+DB_HOST = "ec2-18-235-86-66.compute-1.amazonaws.com"
+DB_NAME = "da1c06fi82ev6c"
+DB_USER = "tjhqznxnlxlreh"
+DB_PASS = "f21ee19a9e50d41255f16288c978201fbbffd3fc9e22b644fb03b904f5216056"
 
 conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST)
-
-
-@app.route("/fetchrecords",methods=["POST","GET"])
-def fetchrecords():
-    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-    if request.method == 'POST':
-        query = request.form['query']
-        #print(query)
-        if query == '':
-            cur.execute("SELECT * FROM employee ORDER BY id DESC")
-            employeelist = cur.fetchall()
-            print('all list')
-        else:
-            search_text = request.form['query']
-            print(search_text)
-            cur.execute("SELECT * FROM employee WHERE office IN (%s) ORDER BY id DESC", [search_text])
-            employeelist = cur.fetchall()
-    return jsonify({'htmlresponse': render_template('response.html', employeelist=employeelist)})
-
 
 
 @app.route("/")
@@ -48,7 +29,25 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/api", methods=["POST"])
+@app.route("/fetchrecords",methods=["POST","GET"])
+def fetchrecords():
+    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    if request.method == 'POST':
+        search_word = request.form['query']
+        print(search_word)
+        if search_word == '':
+            query = "SELECT title, authors, published_year from books_eng LIMIT 10"
+            cur.execute(query)
+            titles = cur.fetchall()
+        else:
+            cur.execute('SELECT title, authors, published_year from  books_eng WHERE title LIKE %(name)s LIMIT 10', {'name': '%{}%'.format(search_word)})
+            numrows = int(cur.rowcount)
+            titles = cur.fetchall()
+            print(numrows)
+    return jsonify({'htmlresponse': render_template('response.html', titles=titles, numrows=numrows)})
+
+
+'''@app.route("/api", methods=["POST"])
 def main():
     miJSON = request.json
     try:
@@ -71,7 +70,7 @@ def main():
 
         return jsonify(respuesta)
     except:
-        return {"error": "Tuvimos un problema"}
+        return {"error": "Tuvimos un problema"}'''
 
 
 if __name__ == "__main__":
