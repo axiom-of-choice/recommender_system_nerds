@@ -36,11 +36,11 @@ def fetchrecords():
         search_word = request.form['query']
         print(search_word)
         if search_word == '':
-            query = "SELECT title, authors, published_year from books_eng LIMIT 10"
+            query = "SELECT title, authors, published_year from books_eng"
             cur.execute(query)
             titles = cur.fetchall()
         else:
-            cur.execute('SELECT title, authors, published_year from  books_eng WHERE title LIKE %(name)s LIMIT 10', {'name': '%{}%'.format(search_word)})
+            cur.execute('SELECT title, authors, published_year from  books_eng WHERE title LIKE %(name)s', {'name': '%{}%'.format(search_word)})
             numrows = int(cur.rowcount)
             titles = cur.fetchall()
             print(numrows)
