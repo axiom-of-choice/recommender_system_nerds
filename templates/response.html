@@ -1,0 +1,17 @@
+<h3>{{numrows}} Records Found</h3>
+<table class="table table-striped custab">
+  <thead>
+      <tr>
+         <th>Title</th>
+         <th>Author</th>
+         <th>Year</th>
+      </tr>
+  </thead>
+  <tbody>
+{% for row in titles %}
+   <tr>
+    <td>{{row.title}}</td>
+    <td>{{row.authors}}</td>
+    <td>{{row.published_year}}</td>
+   </tr>
+{% endfor %}
