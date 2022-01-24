@@ -39,7 +39,7 @@ def extract_titles(lst, api_key = 'AIzaSyAoJKviB_VKhQ6AZeJ8eHs3ycSOhw_ErmI', url
     url: Url from the API
     lst: List of tuples with the title and author information to search with the API
     api_key: API key
-    return: Dataframe with the spanish titles
+    return: Dataframe with the titles in spanish
     '''
     titles_lst = []
     i = 0
