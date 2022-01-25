@@ -33,17 +33,20 @@ def index():
 def fetchrecords():
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     if request.method == 'POST':
-        search_word = request.form['query']
-        print(search_word)
-        if search_word == '':
-            query = "SELECT title, authors, published_year from books_eng"
-            cur.execute(query)
-            titles = cur.fetchall()
-        else:
-            cur.execute('SELECT title, authors, published_year from  books_eng WHERE title LIKE %(name)s', {'name': '%{}%'.format(search_word)})
-            numrows = int(cur.rowcount)
-            titles = cur.fetchall()
-            print(numrows)
+        try:
+            search_word = request.form['query']
+            print(search_word)
+            if search_word == '':
+                query = "SELECT title, authors, published_year from books_eng"
+                cur.execute(query)
+                titles = cur.fetchall()
+            else:
+                cur.execute('SELECT title, authors, published_year from  books_eng WHERE LOWER(title) LIKE LOWER(%(name)s) LIMIT 25', {'name': '%{}%'.format(search_word)})
+                numrows = int(cur.rowcount)
+                titles = cur.fetchall()
+                print(numrows)
+        except:
+            pass
     return jsonify({'htmlresponse': render_template('response.html', titles=titles, numrows=numrows)})
 
 
