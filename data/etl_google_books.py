@@ -26,8 +26,10 @@ titles_authors_df = pd.DataFrame(titles_authors)
 ##    print(titles)
 
 
-response = requests.get(f'https://www.googleapis.com/books/v1/volumes?q=Master of the Game+inauthor:Sidney Sheldon&key={api_key}')
-response_json = response.json()
+##response = requests.get(f'https://www.googleapis.com/books/v1/volumes?q=Master of the Game+inauthor:Sidney Sheldon&key={api_key}')
+##response_json = response.json()
+
+
 
 '''for i in range(len(response_json['items'])):
     if response_json['items'][i]['volumeInfo']['language'] == 'es':
@@ -42,7 +44,6 @@ def extract_titles(lst, api_key = 'AIzaSyAoJKviB_VKhQ6AZeJ8eHs3ycSOhw_ErmI', url
     return: Dataframe with the titles in spanish
     '''
     titles_lst = []
-    i = 0
     for element in lst:
         title = element[0]
         author = element[1]
@@ -50,20 +51,24 @@ def extract_titles(lst, api_key = 'AIzaSyAoJKviB_VKhQ6AZeJ8eHs3ycSOhw_ErmI', url
         response = requests.get(f'{url}intitle:{title}+inauthor:{author}&key={api_key}')
         response_json = response.json()
         try:
-            if response_json['totalItems']!=0:
+            if 'items' in response_json.keys():
                 ##print(response_json)
                 for i in range(len(response_json['items'])):
                     if response_json['items'][i]['volumeInfo']['language'] == 'es':
                         spanish_title = response_json['items'][i]['volumeInfo']['title']
-                        titles_lst.append(spanish_title)
+                        titles_lst.append((spanish_title,lst.index(element)))
                         break
                         ##print(response_json['items'][i]['volumeInfo']['title'])
+                    elif i == len(response_json['items']) - 1 :
+                            titles_lst.append(('',lst.index(element)))
+                            break
+                    else:
+                        pass
             else:
-                pass
+                titles_lst.append(('',lst.index(element)))
         except:
-            #i=i+1
-            #print(i)
-            pass
+            titles_lst.append(('',lst.index(element)))
+        print(titles_lst)
     return titles_lst
 
 
