@@ -66,6 +66,6 @@ def extract_titles(lst, api_key = 'AIzaSyAoJKviB_VKhQ6AZeJ8eHs3ycSOhw_ErmI', url
             pass
     return titles_lst
 
+
 df = extract_titles(titles_authors)
-print(df)
 
