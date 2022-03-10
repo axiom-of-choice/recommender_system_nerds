@@ -1,3 +1,6 @@
+ ## DEAD REPO BASICALLY BY ALL THE TEAM EXCEPT ISAAC
+ 
+ 
  ## Recommender system for nerds
  This project involves a web page where users can search and select *n* books that liked him and then receive
  a book recommendation in response.
